@@ -4,9 +4,39 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "telegraf": "^3.36.0"
+    "aware": "^0.3.1",
+    "bignumber.js": "^7.2.1",
+    "bluebird": "^3.5.1",
+    "dvf-client-js": "^0.1.0",
+    "env-cmd": "^10.0.1",
+    "ethereumjs-util": "^5.2.0",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.10",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
+    "starkware_crypto": "https://github.com/ethfinex/starkware-crypto",
+    "telegraf": "^3.36.0",
+    "web3": "^1.2.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "aigle": "^1.14.1",
+    "browser-run": "^5.0.0",
+    "browserify": "^16.2.2",
+    "del": "^3.0.0",
+    "del-cli": "^1.1.0",
+    "ganache-cli": "^6.1.4",
+    "hash-filename": "^1.0.4",
+    "jest": "^24.9.0",
+    "keccak": "^1.4.0",
+    "mustache": "^4.0.0",
+    "nock": "^9.4.1",
+    "node-minify": "^3.2.0",
+    "solc": "^0.4.24",
+    "standard": "^11.0.1",
+    "supertest": "^4.0.2",
+    "tor-request": "^3.1.0",
+    "truffle-hdwallet-provider": "^1.0.17"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
