@@ -46,6 +46,23 @@ bot.command('balance', async ctx => {
     ctx.reply(`Your balance is ${balance[0].balance/weiDivider} ${balance[0].token}`);
 })
 
+bot.command('vieworders', async ctx => {
+    const deposits = await getOrders();
+
+    let lastestDeposits = '*These are your latest orders*\n';
+
+    deposits.forEach(deposit => {
+        lastestDeposits += `
+*Order*: #${deposit.id}
+*Status*: ${deposit.status}
+*Price*: ${deposit.price}
+*Pair*: ${deposit.pair}
+*Amount*: ${deposit.amount}
+        `;
+    });
+    ctx.replyWithMarkdown(lastestDeposits)
+})
+
 bot.command('deposithistory', async ctx => {
     const deposits = await getDeposits();
     ctx.reply(deposits)
