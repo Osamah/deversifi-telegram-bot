@@ -9,9 +9,16 @@ const Scene = require('telegraf/scenes/base')
 const { leave } = Stage
 
 
-const {getDeposits} = require('./commands/getDeposits');
-const {getBalance} = require('./commands/getBalance');
-const {submitOrder} = require('./commands/submitOrder');
+const {
+    getOrders,
+    cancelOrder,
+    getWithdrawals,
+    withdraw,
+    getOrdersHistory,
+    getBalance,
+    submitOrder,
+    getDeposits,
+  } = require('./commands');
 
 bot.start((ctx) => ctx.reply('Welcome to the Deversifi Bot!\n\nWe created a new ETH wallet for you to use. You can get details of this wallet by running /walletdetails'))
 bot.help((ctx) => ctx.replyWithMarkdown(`
