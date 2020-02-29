@@ -27,23 +27,18 @@ I can help you check your balance, view your orders, make orders and much more! 
 /balance - Returns your current balance
 /deposit - Make a deposit
 /withdraw - Withdraw funds
-/deposit_history - Get your deposit history
-/withdraw_history - Get your withdrawal history
+/deposithistory - Get your deposit history
+/withdrawhistory - Get your withdrawal history
 
 *ORDERS*
-/place_order - Place a new order
-/cancel_order - Cancel an open order
-/view_orders - View your active orders
-/view_order_history - View your orders history
+/placeorder - Place a new order
+/cancelorder - Cancel an open order
+/vieworders - View your active orders
+/vieworderhistory - View your orders history
 
 *WALLET*
 /walletdetails - View details about your wallet
 `))
-
-bot.command('get_deposits', async ctx => {
-    const deposits = await getDeposits();
-    ctx.reply(deposits)
-})
 
 bot.command('balance', async ctx => {
     const balance = await getBalance();
@@ -51,7 +46,12 @@ bot.command('balance', async ctx => {
     ctx.reply(`Your balance is ${balance[0].balance/weiDivider} ${balance[0].token}`);
 })
 
-bot.command('submit_order', async ctx => {
+bot.command('deposithistory', async ctx => {
+    const deposits = await getDeposits();
+    ctx.reply(deposits)
+})
+
+bot.command('submitorder', async ctx => {
     const order = await submitOrder();
     ctx.reply(`All set! Your order #${order.orderId} has been created`)
 })
