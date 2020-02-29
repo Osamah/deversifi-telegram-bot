@@ -24,7 +24,7 @@ const getBalance = async () => {
   const getBalanceResponse = await dvf.getBalance()
 
   console.log('getBalance response ->', getBalanceResponse)
-  return `getBalance response -> ${getBalanceResponse}`
+  return getBalanceResponse
 }
 
 module.exports = {

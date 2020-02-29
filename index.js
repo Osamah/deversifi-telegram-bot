@@ -32,7 +32,8 @@ bot.command('get_deposits', async ctx => {
 })
 bot.command('balance', async ctx => {
     const balance = await getBalance();
-    ctx.reply(balance)
+    const weiDivider = 1000000000000000000;
+    ctx.reply(`Your balance is \n ${balance[0].balance/weiDivider} ${balance[0].token}`);
 })
 
 bot.launch()
