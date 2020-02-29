@@ -23,7 +23,7 @@ const getDeposits = async () => {
   const getDepositsResponse = await dvf.getDeposits();
 
   console.log("getDeposits response ->", getDepositsResponse);
-  return `getDeposits response -> ${getDepositsResponse}`;
+  return getDepositsResponse;
 }
 
 module.exports = {

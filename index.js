@@ -5,6 +5,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN || TELEGRAM_BOT_TOKEN);
 
 const {getDeposits} = require('./commands/getDeposits');
 const {getBalance} = require('./commands/getBalance');
+const {submitOrder} = require('./commands/submitOrder');
 
 bot.start((ctx) => ctx.reply('Welcome to the Deversifi Bot!\n\nWe created a new ETH wallet for you to use. You can get details of this wallet by running /walletdetails'))
 bot.help((ctx) => ctx.replyWithMarkdown(`
@@ -33,7 +34,11 @@ bot.command('get_deposits', async ctx => {
 bot.command('balance', async ctx => {
     const balance = await getBalance();
     const weiDivider = 1000000000000000000;
-    ctx.reply(`Your balance is \n ${balance[0].balance/weiDivider} ${balance[0].token}`);
+    ctx.reply(`Your balance is ${balance[0].balance/weiDivider} ${balance[0].token}`);
+})
+bot.command('submit_order', async ctx => {
+    const order = await submitOrder();
+    ctx.reply(order)
 })
 
 bot.launch()
