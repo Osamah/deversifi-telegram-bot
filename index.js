@@ -19,13 +19,7 @@ const {
   getDeposits
 } = require("./commands");
 
-bot.start(ctx =>
-  ctx.reply(
-    "Welcome to the Deversifi Bot!\n\nWe created a new ETH wallet for you to use. You can get details of this wallet by running /walletdetails\n\nSend /help if you want some more information on what I can do for you"
-  )
-);
-bot.help(ctx =>
-  ctx.replyWithMarkdown(`
+const help = `
 I can help you check your balance, view your orders, make orders and much more! Check following commands to see what I can do for you:
 
 *BALANCE*
@@ -43,8 +37,18 @@ I can help you check your balance, view your orders, make orders and much more! 
 
 *WALLET*
 /walletdetails - View details about your wallet
-`)
-);
+
+*INFO*
+/help - Show this info
+`;
+
+bot.start(ctx => {
+  ctx.reply(
+    "Welcome to the Deversifi Bot!\nWe created a new ETH wallet for you to use straight away."
+  );
+  ctx.replyWithMarkdown(help);
+});
+bot.help(ctx => ctx.replyWithMarkdown(help));
 
 bot.command("balance", async ctx => {
   const balance = await getBalance();
@@ -133,27 +137,27 @@ If this is correct, you can now confirm your order. Otherwise you can cancel.
   }
 );
 
-bot.command('vieworders', async ctx => {
-    const deposits = await getOrders();
+bot.command("vieworders", async ctx => {
+  const deposits = await getOrders();
 
-    let lastestDeposits = '*These are your latest orders*\n';
+  let lastestDeposits = "*These are your latest orders*\n";
 
-    deposits.forEach(deposit => {
-        lastestDeposits += `
+  deposits.forEach(deposit => {
+    lastestDeposits += `
 *Order*: #${deposit.id}
 *Status*: ${deposit.status}
 *Price*: ${deposit.price}
 *Pair*: ${deposit.pair}
 *Amount*: ${deposit.amount}
         `;
-    });
-    ctx.replyWithMarkdown(lastestDeposits)
-})
+  });
+  ctx.replyWithMarkdown(lastestDeposits);
+});
 
-bot.command('deposithistory', async ctx => {
-    const deposits = await getDeposits();
-    ctx.reply(deposits)
-})
+bot.command("deposithistory", async ctx => {
+  const deposits = await getDeposits();
+  ctx.reply(deposits);
+});
 const stage = new Stage([submitOrderWizard]);
 bot.use(session());
 bot.use(stage.middleware());
