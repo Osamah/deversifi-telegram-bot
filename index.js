@@ -43,10 +43,14 @@ I can help you check your balance, view your orders, make orders and much more! 
 `;
 
 bot.start(ctx => {
-  ctx.reply(
-    "Welcome to the Deversifi Bot!\nWe created a new ETH wallet for you to use straight away."
+  ctx.reply(`
+Welcome to the Deversifi Bot!
+We created a new ETH wallet for you to use straight away.
+
+Press /deposit to add funds to your wallet.
+Alternatively, press /help for more information
+`
   );
-  ctx.replyWithMarkdown(help);
 });
 bot.help(ctx => ctx.replyWithMarkdown(help));
 
@@ -96,14 +100,14 @@ const submitOrderWizard = new WizardScene(
   ctx => {
     ctx.wizard.state.order.symbolSell = ctx.message.text;
     ctx.reply(
-      `How much do you want to sell your ${ctx.wizard.state.order.symbolBuy} for? Current market price is 150.18`
+      `For what price do you want to buy ${ctx.wizard.state.order.symbolBuy}? Current market price is 150.18`
     );
     return ctx.wizard.next();
   },
   ctx => {
     ctx.wizard.state.order.price = ctx.message.text;
     ctx.reply(
-      `Great! How much ${ctx.wizard.state.order.symbolBuy} do you want to sell?`
+      `Great! How much ${ctx.wizard.state.order.symbolBuy} do you want to buy?`
     );
     return ctx.wizard.next();
   },
